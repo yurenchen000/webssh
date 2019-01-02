@@ -195,7 +195,10 @@ jQuery(function($){
       return;
     }
 
-    var ws_url = window.location.href.replace('http', 'ws'),
+    //var ws_url = window.location.href.replace('http', 'ws'),
+	console.log(' raw href: ', window.location.href)
+	console.log('   ws url: ', window.location.href.replace('http', 'ws').replace(/\?.*/,''))
+    var ws_url = window.location.href.replace('http', 'ws').replace(/\?.*/,''),
         join = (ws_url[ws_url.length-1] === '/' ? '' : '/'),
         url = ws_url + join + 'ws?id=' + msg.id,
         sock = new window.WebSocket(url),
@@ -575,4 +578,25 @@ window.onload=function(){
 	console.log('---- window.onload ----')
 	$(window).resize()
 }
+
+jQuery(function($){
+	var url = new URLSearchParams(window.location.search)
+	var host = url.get('host')
+	var port = url.get('port')
+	var user = url.get('user')
+	var pass = url.get('pass')
+
+	console.log('--- set load:', host, port, user, pass)
+
+	console.log('pass:', $('input[name=password]'))
+	host && $('#hostname').val(host)
+	port && $('#port').val(port)
+	user && $('#username').val(user)
+	pass && $('input[name=password]').val(pass)
+	pass && setTimeout(function(){
+		$('button[type=submit]').html(' Connecting.. ')
+		$('button[type=submit]').click()
+	}, 0)
+})
+
 
