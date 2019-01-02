@@ -570,3 +570,9 @@ jQuery(function($){
   });
 
 });
+
+window.onload=function(){
+	console.log('---- window.onload ----')
+	$(window).resize()
+}
+
