@@ -579,6 +579,9 @@ window.onload=function(){
 	$(window).resize()
 }
 
+window.onbeforeunload=function(){
+	return 'Do you really want to leave ?'
+}
 jQuery(function($){
 	var url = new URLSearchParams(window.location.search)
 	var host = url.get('host')
