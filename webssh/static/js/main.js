@@ -209,6 +209,23 @@ jQuery(function($){
           cursorBlink: true,
         });
 
+	window.term=term; // debug
+
+	term.customKeyEventHandler=function(e){
+		var KEY_C = 67;
+		// var term = this;
+		console.log('custom key handle:', e, this);
+		// ctrl+shift+c copy
+		if(e.keyCode == KEY_C && e.ctrlKey && e.shiftKey){
+			// term.getSelection()
+			document.execCommand('copy')
+			e.preventDefault();
+			e.stopPropagation();
+			return false; // prevent default action
+		}
+	}
+
+
     console.log(url);
     if (!msg.encoding) {
       console.log('Unable to detect the default encoding of your server');
